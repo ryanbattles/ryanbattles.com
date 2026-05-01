@@ -1,0 +1,41 @@
+# dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# content-collections cache
+.content-collections/
+
+# environment variables
+.env
+.env.*
+!.env.example
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# OS
+.DS_Store
+Thumbs.db
+
+# editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# lock files for package managers not in use
+pnpm-lock.yaml
+yarn.lock
+.pnp
+.pnp.js
+.yarn/
