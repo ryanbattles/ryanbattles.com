@@ -1,5 +1,4 @@
 import BlurFade from "@/components/magicui/blur-fade";
-import BlurFadeText from "@/components/magicui/blur-fade-text";
 import { DiaTextReveal } from "@/components/magicui/dia-text-reveal";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { DATA } from "@/data/resume";
@@ -66,7 +65,6 @@ export default function Page() {
         <div className="mx-auto w-full max-w-2xl space-y-8">
           <div className="gap-2 gap-y-6 flex flex-col md:flex-row justify-between">
             <div className="gap-3 flex flex-col order-2 md:order-1">
-              <BlurFade delay={BLUR_FADE_DELAY} yOffset={8}>
                 <h1 className="text-3xl font-semibold tracking-tighter sm:text-4xl lg:text-5xl font-[family-name:var(--font-display)]">
                   <DiaTextReveal
                     text={`Hi, I'm ${DATA.name}`}
@@ -75,18 +73,10 @@ export default function Page() {
                     colors={["#818cf8", "#a78bfa", "#e879f9", "#38bdf8", "#818cf8"]}
                   />
                 </h1>
-              </BlurFade>
-              <BlurFadeText
-                className="max-w-[400px] md:text-lg pb-1 lg:text-xl"
-                delay={BLUR_FADE_DELAY * 1.5}
-                text={DATA.description}
-              />
-              <BlurFade delay={BLUR_FADE_DELAY * 1.75}>
+                <p className="max-w-[400px] md:text-lg pb-1 lg:text-xl">{DATA.description}</p>
                 <p className="text-sm text-muted-foreground leading-relaxed max-w-[600px] pb-3">
                   Currently the director of marketing at Wastebits, I've helped take the company from an early-stage software platform into one of the most recognized names in waste technology.
                 </p>
-              </BlurFade>
-              <BlurFade delay={BLUR_FADE_DELAY * 2}>
                 <div className="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:items-center">
                   <Link href="/contact" className="col-span-1">
                     <RainbowButton className="w-full sm:w-auto">
@@ -105,9 +95,8 @@ export default function Page() {
                     <span className="sm:hidden inline">LinkedIn</span>
                   </Link>
                 </div>
-              </BlurFade>
             </div>
-            <BlurFade delay={BLUR_FADE_DELAY} className="order-1 md:order-2">
+            <div className="order-1 md:order-2">
               <div className="relative" style={{ display: "inline-block" }}>
                 {/* Two morphing blob outlines — Siri-style */}
                 <svg
@@ -166,6 +155,7 @@ export default function Page() {
                       />
                     </path>
                   </g>
+
                 </svg>
 
                 <Avatar className="size-24 md:size-32 rounded-full shadow-lg overflow-hidden relative">
@@ -179,7 +169,7 @@ export default function Page() {
                   <AvatarFallback>{DATA.initials}</AvatarFallback>
                 </Avatar>
               </div>
-            </BlurFade>
+            </div>
           </div>
         </div>
       </section>
