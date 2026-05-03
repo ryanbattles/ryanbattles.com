@@ -43,7 +43,7 @@ function TestimonialCard({ t, isActive }: { t: Testimonial; isActive: boolean })
           }}
         />
       )}
-      <blockquote className="text-sm leading-relaxed text-foreground/90">
+      <blockquote className="text-sm leading-relaxed text-foreground">
         &ldquo;{t.quote}&rdquo;
       </blockquote>
       <figcaption className="flex items-center gap-3 mt-auto">
@@ -276,7 +276,7 @@ export default function TestimonialsSection() {
             type="button"
             onClick={goPrev}
             aria-label="Previous testimonial"
-            className="absolute left-1 top-1/2 -translate-y-1/2 z-10 size-10 rounded-full bg-white text-gray-800 flex items-center justify-center shadow-[0_4px_14px_rgba(0,0,0,0.15)] hover:shadow-[0_6px_18px_rgba(0,0,0,0.2)] hover:scale-105 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="absolute left-1 top-1/2 -translate-y-1/2 z-10 size-10 rounded-full bg-white text-foreground flex items-center justify-center shadow-[0_4px_14px_rgba(0,0,0,0.15)] hover:shadow-[0_6px_18px_rgba(0,0,0,0.2)] hover:scale-105 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           >
             <ChevronLeft className="size-5" strokeWidth={2.25} />
           </button>
@@ -286,7 +286,7 @@ export default function TestimonialsSection() {
             type="button"
             onClick={goNext}
             aria-label="Next testimonial"
-            className="absolute right-1 top-1/2 -translate-y-1/2 z-10 size-10 rounded-full bg-white text-gray-800 flex items-center justify-center shadow-[0_4px_14px_rgba(0,0,0,0.15)] hover:shadow-[0_6px_18px_rgba(0,0,0,0.2)] hover:scale-105 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="absolute right-1 top-1/2 -translate-y-1/2 z-10 size-10 rounded-full bg-white text-foreground flex items-center justify-center shadow-[0_4px_14px_rgba(0,0,0,0.15)] hover:shadow-[0_6px_18px_rgba(0,0,0,0.2)] hover:scale-105 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           >
             <ChevronRight className="size-5" strokeWidth={2.25} />
           </button>

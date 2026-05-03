@@ -73,7 +73,7 @@ export default function Page() {
                     colors={["#818cf8", "#a78bfa", "#e879f9", "#38bdf8", "#818cf8"]}
                   />
                 </h1>
-                <p className="max-w-[400px] md:text-lg pb-1 lg:text-xl">{DATA.description}</p>
+                <p className="max-w-[400px] md:text-lg pb-1 lg:text-xl leading-[1.4em]">{DATA.description}</p>
                 <p className="text-sm text-muted-foreground leading-relaxed max-w-[600px] pb-3">
                   Currently the director of marketing at Wastebits, I've helped take the company from an early-stage software platform into one of the most recognized names in waste technology.
                 </p>
@@ -202,6 +202,8 @@ export default function Page() {
         </div>
       </section>
       <ShadowSeparator />
+      <ProjectsSection />
+      <ShadowSeparator flip />
       <section id="education">
         <div className="flex min-h-0 flex-col gap-y-6">
           <BlurFade delay={BLUR_FADE_DELAY * 7}>
@@ -285,8 +287,6 @@ export default function Page() {
           </div>
         </div>
       </section>
-      <ShadowSeparator flip />
-      <ProjectsSection />
       <ShadowSeparator />
       <section id="skills">
         <div className="flex min-h-0 flex-col gap-y-6">

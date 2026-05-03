@@ -79,7 +79,7 @@ export default function ContactPage() {
   );
 
   return (
-    <main className="min-h-dvh flex flex-col gap-14 relative">
+    <main className="flex flex-col gap-14 relative">
       <div className="flex flex-col gap-8">
         <section id="contact-header">
           <div className="mx-auto w-full max-w-2xl space-y-1">

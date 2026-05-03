@@ -20,7 +20,7 @@ export default function AboutSection({ content }: { content: string }) {
       >
         <div
           ref={contentRef}
-          className="prose max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert [&_strong]:font-semibold [&_strong]:text-foreground/80 [&_strong]:font-[inherit]"
+          className="prose max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert [&_strong]:font-semibold [&_strong]:text-foreground [&_strong]:font-[inherit]"
         >
           <Markdown>{content}</Markdown>
         </div>
