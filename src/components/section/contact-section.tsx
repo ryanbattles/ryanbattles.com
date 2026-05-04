@@ -6,7 +6,15 @@ import { MailIcon } from "lucide-react";
 
 export default function ContactSection() {
   return (
-    <div className="border rounded-xl p-10 relative">
+    <div className="border rounded-xl p-10 relative overflow-hidden">
+      {/* Colorful top border stripe */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px"
+        style={{
+          background: "linear-gradient(90deg, transparent, #818cf8, #a78bfa, #e879f9, #38bdf8, transparent)",
+        }}
+      />
 <div className="absolute inset-0 top-0 left-0 right-0 h-1/2 rounded-xl overflow-hidden">
         <FlickeringGrid
           className="h-full w-full"
