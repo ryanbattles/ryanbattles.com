@@ -2,7 +2,7 @@
 
 Personal portfolio site for Ryan Battles — marketing leader, builder, Columbus, Ohio.
 
-Built with Next.js, Tailwind CSS, shadcn/ui, and Magic UI. Outputs a fully static site deployed via GitHub Actions to GitHub Pages.
+Built with Next.js, Tailwind CSS, shadcn/ui, Magic UI, and content-collections. Outputs a fully static site deployed via GitHub Actions to GitHub Pages.
 
 ## Stack
 
@@ -11,8 +11,8 @@ Built with Next.js, Tailwind CSS, shadcn/ui, and Magic UI. Outputs a fully stati
 - **Tailwind CSS v4**
 - **shadcn/ui** — accessible component primitives
 - **Magic UI** — animation components (BlurFade, FlickeringGrid)
-- **react-icons** — brand icons (Salesforce, HubSpot, etc.)
 - **Lucide React** — general-purpose icons
+- **content-collections** — MDX/content generation hook, currently configured with no active collections
 
 ## Development
 
@@ -21,6 +21,8 @@ Install dependencies:
 ```bash
 npm install
 ```
+
+This project uses npm. Keep `package-lock.json` as the source of truth.
 
 Start the local dev server with hot reload:
 
@@ -43,10 +45,13 @@ Edit the `DATA` object there to update name, description, work history, skills, 
 ## Building for Production
 
 ```bash
+npm run lint
 npm run build
 ```
 
 Outputs a fully static site to the `out/` directory — plain HTML, CSS, and JS ready for any static host.
+
+Generated directories such as `.next/`, `out/`, and `.content-collections/` are ignored and should not be committed.
 
 ## Deployment
 

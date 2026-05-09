@@ -4,7 +4,7 @@ import Image, { ImageProps } from "next/image";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
-export function ShimmerImage({ className, onLoad, ...props }: ImageProps) {
+export function ShimmerImage({ alt = "", className, onLoad, ...props }: ImageProps) {
   const [loaded, setLoaded] = useState(false);
 
   return (
@@ -17,6 +17,7 @@ export function ShimmerImage({ className, onLoad, ...props }: ImageProps) {
       )}
       <Image
         {...props}
+        alt={alt}
         className={cn(
           "transition-opacity duration-500",
           loaded ? "opacity-100" : "opacity-0",

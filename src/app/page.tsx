@@ -75,7 +75,7 @@ export default function Page() {
                 </h1>
                 <p className="max-w-[400px] md:text-lg pb-1 lg:text-xl leading-[1.4em]">{DATA.description}</p>
                 <p className="text-sm text-muted-foreground leading-relaxed max-w-[600px] pb-3">
-                  Currently the director of marketing at Wastebits, I've helped take the company from an early-stage software platform into one of the most recognized names in waste technology.
+                  Currently the director of marketing at Wastebits, I&apos;ve helped take the company from an early-stage software platform into one of the most recognized names in waste technology.
                 </p>
                 <div className="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:items-center">
                   <Link href="/contact" className="col-span-1">

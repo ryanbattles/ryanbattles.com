@@ -1,25 +1,28 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useCallback, useState } from "react";
 import Markdown from "react-markdown";
 import { ChevronDown } from "lucide-react";
 
 export default function AboutSection({ content }: { content: string }) {
   const [expanded, setExpanded] = useState(false);
-  const contentRef = useRef<HTMLDivElement>(null);
+  const [contentHeight, setContentHeight] = useState(300);
+
+  const setContentRef = useCallback((node: HTMLDivElement | null) => {
+    if (!node) return;
+    setContentHeight(node.scrollHeight);
+  }, []);
 
   return (
     <div className="flex flex-col gap-y-3">
       <div
         className="relative overflow-hidden transition-[max-height] duration-500 ease-in-out"
         style={{
-          maxHeight: expanded
-            ? (contentRef.current?.scrollHeight ?? 9999)
-            : 300,
+          maxHeight: expanded ? contentHeight : 300,
         }}
       >
         <div
-          ref={contentRef}
+          ref={setContentRef}
           className="prose max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert [&_strong]:font-semibold [&_strong]:text-foreground [&_strong]:font-[inherit]"
         >
           <Markdown>{content}</Markdown>

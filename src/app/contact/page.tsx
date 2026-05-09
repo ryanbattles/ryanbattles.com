@@ -7,11 +7,16 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { DATA } from "@/data/resume";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState, useSyncExternalStore } from "react";
 import { cn } from "@/lib/utils";
 import { CheckCircle2 } from "lucide-react";
 
 const BLUR_FADE_DELAY = 0.04;
+
+const subscribeToUrl = () => () => {};
+const getSuccessSnapshot = () =>
+  new URLSearchParams(window.location.search).get("success") === "true";
+const getServerSuccessSnapshot = () => false;
 
 interface FieldErrors {
   name?: string;
@@ -38,16 +43,14 @@ export default function ContactPage() {
   const [company, setCompany] = useState("");
   const [message, setMessage] = useState("");
   const [touched, setTouched] = useState<Record<string, boolean>>({});
-  const [success, setSuccess] = useState(false);
+  const success = useSyncExternalStore(
+    subscribeToUrl,
+    getSuccessSnapshot,
+    getServerSuccessSnapshot
+  );
 
   const formRef    = useRef<HTMLFormElement>(null);
   const subjectRef = useRef<HTMLInputElement>(null);
-
-  // Detect ?success=true after FormSubmit redirects back
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("success") === "true") setSuccess(true);
-  }, []);
 
   const touch = (field: string) => setTouched((t) => ({ ...t, [field]: true }));
 
