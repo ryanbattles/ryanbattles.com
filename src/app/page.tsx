@@ -14,6 +14,7 @@ import { ArrowUpRight, MailIcon } from "lucide-react";
 import { RainbowButton } from "@/components/magicui/rainbow-button";
 import AboutSection from "@/components/section/about-section";
 import type { Metadata } from "next";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   alternates: {
@@ -57,7 +58,8 @@ const personJsonLd = {
 export default function Page() {
   return (
     <main className="min-h-dvh flex flex-col gap-16 relative">
-      <script
+      <Script
+        id="person-json-ld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
       />

@@ -1,4 +1,4 @@
-import Navbar from "@/components/navbar";
+import FooterLinks from "@/components/footer-links";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
@@ -127,7 +127,7 @@ export default function RootLayout({
               <footer className="mt-16 text-center text-xs text-muted-foreground/70 select-none flex flex-col gap-4">
                 <span>Made with ❤️ in Columbus, OH</span>
                 <span>&copy; {new Date().getFullYear()} {DATA.name}. All rights reserved.</span>
-                <Navbar mobile />
+                <FooterLinks />
               </footer>
             </div>
           </TooltipProvider>

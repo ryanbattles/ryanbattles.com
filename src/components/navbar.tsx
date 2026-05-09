@@ -1,5 +1,5 @@
 import { Dock, DockIcon } from "@/components/magicui/dock";
-import { ModeToggle } from "@/components/mode-toggle";
+import { ModeToggle, ModeToggleTooltipLabel } from "@/components/mode-toggle";
 import { Separator } from "@/components/ui/separator";
 import {
   Tooltip,
@@ -11,9 +11,20 @@ import { DATA } from "@/data/resume";
 import Link from "next/link";
 
 export default function Navbar({ mobile = false }: { mobile?: boolean }) {
+  const socialItems = [
+    DATA.contact.social.email,
+    DATA.contact.social.LinkedIn,
+    DATA.contact.social.Instagram,
+  ].filter((social) => social.navbar);
+
   if (mobile) {
     return (
-      <Dock className="z-50 pointer-events-auto relative h-auto p-2 w-fit mx-auto flex gap-2 border-0 bg-transparent shadow-none">
+      <Dock
+        className="z-50 pointer-events-auto relative h-auto p-1.5 w-fit mx-auto flex gap-1.5 border-0 bg-transparent shadow-none"
+        size={32}
+        iconSize={16}
+        magnification={40}
+      >
         {DATA.navbar.map((item) => {
           const isExternal = item.href.startsWith("http");
           const DockButton = (
@@ -21,19 +32,32 @@ export default function Navbar({ mobile = false }: { mobile?: boolean }) {
               <item.icon className="size-full" />
             </DockIcon>
           );
-          return isExternal ? (
-            <a key={item.href} href={item.href} target="_blank" rel="noopener noreferrer">
-              {DockButton}
-            </a>
-          ) : (
-            <Link key={item.href} href={item.href}>
-              {DockButton}
-            </Link>
+          return (
+            <Tooltip key={item.href}>
+              <TooltipTrigger asChild>
+                {isExternal ? (
+                  <a href={item.href} target="_blank" rel="noopener noreferrer" aria-label={item.label}>
+                    {DockButton}
+                  </a>
+                ) : (
+                  <Link href={item.href} aria-label={item.label}>
+                    {DockButton}
+                  </Link>
+                )}
+              </TooltipTrigger>
+              <TooltipContent
+                side="top"
+                sideOffset={8}
+                className="rounded-xl bg-primary text-primary-foreground px-4 py-2 text-sm shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] dark:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)]"
+              >
+                <p>{item.label}</p>
+                <TooltipArrow className="fill-primary" />
+              </TooltipContent>
+            </Tooltip>
           );
         })}
-        {Object.entries(DATA.contact.social)
-          .filter(([_, social]) => social.navbar)
-          .map(([name, social]) => {
+        {socialItems
+          .map((social) => {
             const isExternal = social.url.startsWith("http");
             const IconComponent = social.icon;
             const DockButton = (
@@ -41,16 +65,34 @@ export default function Navbar({ mobile = false }: { mobile?: boolean }) {
                 <IconComponent className="size-full" />
               </DockIcon>
             );
-            return isExternal ? (
-              <a key={`social-${name}`} href={social.url} target="_blank" rel="noopener noreferrer">
-                {DockButton}
-              </a>
-            ) : (
-              <Link key={`social-${name}`} href={social.url}>
-                {DockButton}
-              </Link>
+            return (
+              <Tooltip key={`social-${social.name}`}>
+                <TooltipTrigger asChild>
+                  {isExternal ? (
+                    <a href={social.url} target="_blank" rel="noopener noreferrer" aria-label={social.name}>
+                      {DockButton}
+                    </a>
+                  ) : (
+                    <Link href={social.url} aria-label={social.name}>
+                      {DockButton}
+                    </Link>
+                  )}
+                </TooltipTrigger>
+                <TooltipContent
+                  side="top"
+                  sideOffset={8}
+                  className="rounded-xl bg-primary text-primary-foreground px-4 py-2 text-sm shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] dark:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)]"
+                >
+                  <p>{social.name}</p>
+                  <TooltipArrow className="fill-primary" />
+                </TooltipContent>
+              </Tooltip>
             );
           })}
+        <Separator
+          orientation="vertical"
+          className="h-5 m-auto w-px bg-border"
+        />
         <Tooltip>
           <TooltipTrigger asChild>
             <DockIcon className="rounded-lg cursor-pointer size-8 bg-background p-0 text-muted-foreground hover:text-foreground hover:bg-muted border border-border transition-colors">
@@ -62,7 +104,7 @@ export default function Navbar({ mobile = false }: { mobile?: boolean }) {
             sideOffset={8}
             className="rounded-xl bg-primary text-primary-foreground px-4 py-2 text-sm shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] dark:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)]"
           >
-            <p>Theme</p>
+            <p><ModeToggleTooltipLabel /></p>
             <TooltipArrow className="fill-primary" />
           </TooltipContent>
         </Tooltip>
@@ -106,9 +148,8 @@ export default function Navbar({ mobile = false }: { mobile?: boolean }) {
             </Tooltip>
           );
         })}
-        {Object.entries(DATA.contact.social)
-          .filter(([_, social]) => social.navbar)
-          .map(([name, social], index) => {
+        {socialItems
+          .map((social, index) => {
             const isExternal = social.url.startsWith("http");
             const IconComponent = social.icon;
             const DockButton = (
@@ -117,7 +158,7 @@ export default function Navbar({ mobile = false }: { mobile?: boolean }) {
               </DockIcon>
             );
             return (
-              <Tooltip key={`social-${name}-${index}`}>
+              <Tooltip key={`social-${social.name}-${index}`}>
                 <TooltipTrigger asChild>
                   {isExternal ? (
                     <a href={social.url} target="_blank" rel="noopener noreferrer">
@@ -155,7 +196,7 @@ export default function Navbar({ mobile = false }: { mobile?: boolean }) {
             sideOffset={8}
             className="rounded-xl bg-primary text-primary-foreground px-4 py-2 text-sm shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] dark:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)]"
           >
-            <p>Theme</p>
+            <p><ModeToggleTooltipLabel /></p>
             <TooltipArrow className="fill-primary" />
           </TooltipContent>
         </Tooltip>
